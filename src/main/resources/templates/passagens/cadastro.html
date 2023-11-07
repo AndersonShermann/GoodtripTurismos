@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+ 
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+ 
+	<title>Passagem</title>
+</head>
+ 
+<body>
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Passagem</a>
+		</div>
+	</nav>
+ 
+	<main class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1>Cadastro de Passagem</h1>
+			</div>
+		</div>
+ 
+		<div class="row">
+			<div class="col-sm-12">
+				<form action="/cadastrar-passagem" method="post" th:object="${passagem}" enctype="multipart/form-data">
+					<div class="mb-3">
+						<label for="valor" class="form-label">Valor</label>
+						<input type="number" class="form-control" id="valor" th:field="*{valor}" placeholder="Valor da Passagem">
+					</div>
+					<div class="mb-3">
+						<label for="poltrona" class="form-label">Poltrona</label>
+						<input type="text" class="form-control" id="poltrona" th:field="*{poltrona}" placeholder="nº da poltrona">
+					</div>
+					<div class="mb-3">
+						<label for="data" class="form-label">Data</label>
+						<input type="date" class="form-control" id="data" th:field="*{data}">
+					</div>
+					<br>
+					<button type="submit" class="btn btn-primary">Cadastrar Passagem</button>
+				</form>
+			</div>
+		</div>
+	</main>
+ 
+ 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+		crossorigin="anonymous"></script>
+</body>
+ 
+</html>

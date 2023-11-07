@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		/* Paleta de cores 
+		#89CDBE
+		#272860
+		*/
+
+		@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			width: 100%;
+			font-family: "Poppins", sans-serif;
+			background: #f5f5f5;
+		}
+
+		/* Menu Navegação */
+
+		.navbar {
+			backdrop-filter: blur(50px);
+			box-shadow: 0 0 10px 5px #00000080;
+		}
+
+		.navbar a {
+			color: #272860;
+			transition: .3s ease-in-out;
+		}
+
+		#login {
+			background-color: #89CDBE;
+			border-radius: 10cap;
+		}
+
+		/* Formulário de Pesquisa */
+
+		#searchBox {
+			color: #272860;
+		}
+
+		#searchButton {
+			background-color: #89CDBE;
+			color: #272860;
+		}
+	</style>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+	<script src="../static/js/script.js"></script>
+	<title>GoodTrip</title>
+</head>
+
+<body>
+	<!--Menu de Navegação-->
+	<nav class="navbar navbar-expand-sm sticky-top p-0">
+		<div class="container-fluid">
+			<a href="#" class="navbar-brand d-flex align-items-center text-muted">
+				<img src="https://github.com/AndersonShermann/goodtrip/blob/main/img/logo2.png?raw=true"
+					alt="Logo da empresa" class="d-inline-block" width="70" height="70">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavbar"><span
+					class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="menuNavbar">
+				<div class="navbar-nav ms-auto">
+					<a href="#" class="nav-link text-nowrap fw-medium me-3">Destinos</a>
+					<a href="#" class="nav-link text-nowrap fw-medium me-3">Planos de Viagem</a>
+					<a href="#" class="nav-link text-nowrap fw-medium me-3">Sobre Nós</a>
+					<a href="#" class="nav-link text-nowrap fw-medium me-3" id="login" data-bs-toggle="modal"
+						data-bs-target="#loginModal">Cadastro / Login</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Apresentação Inicial -->
+	<div class="position-relative">
+		<img src="https://github.com/AndersonShermann/goodtrip/blob/main/img/aviao-inicial.jpg?raw=true" alt=""
+			class="position-relative w-100" style="">
+		<div class="text-overlay position-absolute top-50 start-50 translate-middle text-center">
+			<h1 class="text-white fw-medium text-nowrap">Sua viagem começa aqui!</h1>
+		</div>
+
+		<form action="#" method="post">
+			<div class="search position-relative start-50 translate-middle-x m-auto">
+				<div class="inputs d-flex flex-wrap justify-content-between p-4 bg-white shadow gap-3"
+					style="height: 200px;">
+					<div class="form-group col-md-2">
+						<label for="location" class="text-dark fw-medium">Destino</label>
+						<input type="text" class="form-control" id="location" placeholder="São Paulo - SP">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="check-in" class="text-dark fw-medium">Check-in</label>
+						<input type="date" class="form-control" id="check-in">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="check-out" class="text-dark fw-medium">Check-out</label>
+						<input type="date" class="form-control" id="check-out">
+					</div>
+					<div class="form-group col-md-2">
+						<label for="guests" class="text-dark fw-medium">Pessos</label>
+						<input type="text" class="form-control" id="guests" placeholder="4 Adults">
+					</div>
+					<div class="d-block justify-content-center col-md-4">
+						<!-- Alterado para d-flex e justify-content-center -->
+						<button type="submit" class="btn fw-medium" id="searchButton">
+							Buscar
+						</button>
+					</div>
+				</div>
+		</form>
+	</div>
+
+	<!-- Cards -->
+	<div class="container-fluid position-absolute mt-5">
+		<div class="text-center">
+			<h2 class="fw-semibold fs-3">Pacotes Populares</h2>
+			<p class="fs-5 text-muted">Viajar não precisar ser caro</p>
+		</div>
+
+		<div class="container-fluid mt-5">
+			<div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active" data-bs-interval="4000">
+						<div class="row">
+							<div class="col-sm-6 col-md-4 col-lg-3">
+								<a href="#">
+									<div class="card mb-4 rounded overflow-hidden" style="height: 400px; width: 300px;">
+										<img src="https://img.freepik.com/fotos-gratis/estatua-decorada-do-deus-hindu-tradicional-bali-indonesia_158538-26282.jpg?w=360&t=st=1698781931~exp=1698782531~hmac=d575d7c907ca9caad88f48060aec31627fda89da4f380742213d73d6248b28f0"
+											alt="ok" class="card-img-top">
+										<div class="card-img-overlay">
+											<div class="details text-white">
+												<h3 class="card-title text-xl font-medium">Bali - Indonésia</h3>
+												<p class="card-text text-sm">3 Dias 3 Noites</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-sm-6 col-md-4 col-lg-3">
+								<a href="#">
+									<div class="card mb-4 rounded overflow-hidden" style="height: 400px; width: 300px;">
+										<img src="https://img.freepik.com/fotos-gratis/foto-vertical-da-hipnotizante-montanha-de-machu-picchu-em-um-dia-nublado_181624-10704.jpg?w=360&t=st=1698781968~exp=1698782568~hmac=24155f87a4d97890fb2b5058ec69e377f8ef943d66df46808b96b4f0893ec7f7"
+											alt="ok" class="card-img-top">
+										<div class="card-img-overlay">
+											<div class="details text-white">
+												<h3 class="card-title text-xl font-medium">Machu Pichu - Peru</h3>
+												<p class="card-text text-sm">3 Dias 2 Noites</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-sm-6 col-md-4 col-lg-3">
+								<a href="#">
+									<div class="card mb-4 rounded overflow-hidden" style="height: 400px; width: 300px;">
+										<img src="https://img.freepik.com/fotos-gratis/vista-panoramica-na-cidade-grande-a-noite_1153-3640.jpg?w=360&t=st=1698782191~exp=1698782791~hmac=caf34f1b84eb710132563db906b4d5efe3975c02b56b54596dbf5fec77c3994b"
+											alt="ok" class="card-img-top">
+										<div class="card-img-overlay">
+											<div class="details text-white">
+												<h3 class="card-title text-xl font-medium">São Paulo - Brazil</h3>
+												<p class="card-text text-sm">3 Dias 3 Noites</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-sm-6 col-md-4 col-lg-3">
+								<a href="#">
+									<div class="card mb-4 rounded overflow-hidden" style="height: 400px; width: 300px;">
+										<img src="https://img.freepik.com/fotos-gratis/vista-panoramica-na-cidade-grande-a-noite_1153-3640.jpg?w=360&t=st=1698782191~exp=1698782791~hmac=caf34f1b84eb710132563db906b4d5efe3975c02b56b54596dbf5fec77c3994b"
+											alt="ok" class="card-img-top">
+										<div class="card-img-overlay">
+											<div class="details text-white">
+												<h3 class="card-title text-xl font-medium">São Paulo - Brazil</h3>
+												<p class="card-text text-sm">3 Dias 3 Noites</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="carousel-item" data-bs-interval="4000">
+						<div class="row ">
+							<div class="col-sm-6 col-md-4 col-lg-3">
+								<a href="#">
+									<div class="card mb-4 rounded overflow-hidden" style="height: 400px; width: 300px;">
+										<img src="https://img.freepik.com/fotos-gratis/torre-eiffel-como-o-famoso-marco-da-cidade-em-paris_649448-4835.jpg?w=360&t=st=1698781464~exp=1698782064~hmac=db59d782d365847fedf75097ba821f60c3665c5ebaae310ace69aca1e935db84"
+											alt="ok" class="card-img-top">
+										<div class="card-img-overlay">
+											<div class="details text-white">
+												<h3 class="card-title text-xl font-medium">Paris - França</h3>
+												<p class="card-text text-sm">3 Dias 3 noites</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-sm-6 col-md-4 col-lg-3">
+								<a href="#">
+									<div class="card mb-4 rounded overflow-hidden" style="height: 400px; width: 300px;">
+										<img src="https://img.freepik.com/fotos-gratis/bondinho-do-pao-de-acucar-durante-o-por-do-sol_181624-36743.jpg?w=360&t=st=1698781620~exp=1698782220~hmac=73b4bc14c71cc875f880bdc54dbee59f96fb1cc60a53832e18772e6cb33e550c"
+											alt="ok" class="card-img-top">
+										<div class="card-img-overlay">
+											<div class="details text-white">
+												<h3 class="card-title text-xl font-medium">Rio de Janeiro - Brazil</h3>
+												<p class="card-text text-sm">5 Dias 4 Noites</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-sm-6 col-md-4 col-lg-3">
+								<a href="#">
+									<div class="card mb-4 rounded overflow-hidden" style="height: 400px; width: 300px;">
+										<img src="https://img.freepik.com/fotos-gratis/midtown-manhattan-nova-york-eua_181624-12210.jpg?w=360&t=st=1698781759~exp=1698782359~hmac=5131b73ea97f7a8e0f0070be1581380b9c8d6273f67eb150802d33b37dc069ed"
+											alt="ok" class="card-img-top">
+										<div class="card-img-overlay">
+											<div class="details text-white">
+												<h3 class="card-title text-xl font-medium">New York - EUA</h3>
+												<p class="card-text text-sm">5 Dias 4 Noites</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="col-sm-6 col-md-4 col-lg-3">
+								<a href="#">
+									<div class="card mb-4 rounded overflow-hidden" style="height: 400px; width: 300px;">
+										<img src="https://img.freepik.com/fotos-gratis/midtown-manhattan-nova-york-eua_181624-12210.jpg?w=360&t=st=1698781759~exp=1698782359~hmac=5131b73ea97f7a8e0f0070be1581380b9c8d6273f67eb150802d33b37dc069ed"
+											alt="ok" class="card-img-top">
+										<div class="card-img-overlay">
+											<div class="details text-white">
+												<h3 class="card-title text-xl font-medium">New York - EUA</h3>
+												<p class="card-text text-sm">5 Dias 4 Noites</p>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<a class="carousel-control-prev" href="#cardCarousel" role="button" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#cardCarousel" role="button" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</a>
+			</div>
+		</div>
+
+		<!-- Cards 2 -->
+		<div class="text-center mt-5 fs-3">
+			<h2 class="fw-semibold">O melhor pra você</h2>
+			<p class=" fs-5 text-muted">Experimente uma variedade de benefícios ao usar nossos serviços</p>
+		</div>
+		<div class="container d-flex justify-content-center align-items-center gap-4 mb-5 p-3">
+			<div class="card col-md-4 text-center shadow-lg border-0 p-5 rounded-0"
+				style="width: 25rem; height: 18rem;">
+				<div class="card-img p-1">
+					<img style="width: 40px; height: 40px;"
+						src="https://uxwing.com/wp-content/themes/uxwing/download/internet-network-technology/globe-network-color-icon.png"
+						alt="">
+				</div>
+				<p class="card-title fw-medium h4 m-0">Variedade</p>
+				<p class="card-body text-muted text-body m-0 fs-4">+ de 100 destinos incríveis </p>
+				<div class="mb-1">
+					<a href="#" class="btn fw-semibold" style="color: #89CDBE;">Saiba Mais</a>
+				</div>
+			</div>
+			<div class="card col-md-4 text-center shadow border-0 p-5 rounded-0" style="width: 25rem; height: 18rem;">
+				<div class="card-img p-1">
+					<img style="width: 40px; height: 40px;"
+						src="https://uxwing.com/wp-content/themes/uxwing/download/location-travel-map/check-in-icon.png"
+						alt="">
+				</div>
+				<p class="card-title fw-medium h4 m-0">Melhores Destinos</p>
+				<p class="card-body text-muted text-body m-0 fs-4">Seja para trabalho ou lazer</p>
+				<div class="mb-1">
+					<a href="#" class="btn fw-semibold" style="color: #89CDBE;">Saiba Mais</a>
+				</div>
+			</div>
+			<div class="card col-md-4 text-center shadow border-0 p-5 rounded-0" style="width: 25rem; height: 18rem;">
+				<div class="card-img p-1">
+					<img style="width: 40px; height: 40px;"
+						src="https://uxwing.com/wp-content/themes/uxwing/download/time-and-date/reservation-icon.png"
+						alt="">
+				</div>
+				<p class="card-title fw-medium h4 m-0">Reserva Fácil</p>
+				<p class="card-body text-muted text-body m-0 fs-4">Compre com um clique</p>
+				<div class="mb-1">
+					<a href="#" class="btn fw-semibold" style="color: #89CDBE;">Saiba Mais</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Vídeo Apresentação -->
+		<div class="container position-absolut overflow-hidden mt-6">
+			<video style="height: auto;" class="w-100 rounded-4 overflow-hidden"
+				src="https://ik.imagekit.io/imgkitt/production_id_4662765%20(1080p).mp4?updatedAt=1698431795982"
+				alt="video" autoPlay loop controls></video>
+		</div>
+
+
+
+
+		<!--Recomendações  -->
+		<div class="text-center mt-5">
+			<h2 class="fw-semibold fs-3">Recomentações</h2>
+			<p class="fs-5 text-muted">Melhores recomendações de viagens ao redor do mundo</p>
+		</div>
+
+		<!-- Criar cards -->
+
+
+		<!-- Footer -->
+		<footer class="bg-light pb-4 border-top">
+			<div class="container-fluid text-center text-md-start">
+				<div class="row text-center text-md-start fs-9">
+					<div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+						<h5 class="mb-4 fs-6" style="color: #272860;">Good<span style="color: #89CDBE;">trip</span></h5>
+						<p class="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus,
+							doloribus?</p>
+					</div>
+
+					<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3" id="link">
+						<h5 class="mb-4 fs-6" style="color: #272860;">Sobre Nós</h5>
+						<p>
+							<a href="#" class="text-decoration-none text-muted">Nossa História</a>
+						</p>
+						<p>
+							<a href="#" class="text-decoration-none text-muted">Nossa Frota</a>
+						</p>
+						<p>
+							<a href="#" class="text-decoration-none text-muted">Canal de Ética</a>
+						</p>
+						<p>
+							<a href="#" class="text-decoration-none text-muted">Política de Privacidade</a>
+						</p>
+						<p>
+							<a href="#" class="text-decoration-none text-muted">Sustentabilidade</a>
+						</p>
+					</div>
+
+					<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3" id="link">
+						<h5 class="mb-4 fs-6" style="color: #272860;">Suporte</h5>
+						<p>
+							<a href="#" class="text-decoration-none text-muted">Agências</a>
+						</p>
+						<p>
+							<a href="#" class="text-decoration-none text-muted">Empresas</a>
+						</p>
+						<p>
+							<a href="#" class="text-decoration-none text-muted">Pagamentos</a>
+						</p>
+						<p>
+							<a href="#" class="text-decoration-none text-muted">Eventos</a>
+						</p>
+					</div>
+
+					<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+						<h5 class="mb-4 fs-6" style="color: #272860;">Contatos</h5>
+						<p class="text-muted">
+							<i class="bi bi-house-door" style="color: #89CDBE;"></i> Rio de Janeiro, RJ - BR
+						</p>
+						<p class="text-muted">
+							<i class="bi bi-envelope-at" style="color: #89CDBE;"></i> goodtrip@goodtrip.com
+						</p>
+						<p class="text-muted">
+							<i class="bi bi-telephone-inbound" style="color: #89CDBE;"></i> + 55 21 0 0000-0000
+						</p>
+					</div>
+
+					<hr class="mb-4">
+
+					<div class="row align-items-center text-muted">
+						<div class="col-md-7 col-lg-8">
+							<p>&copy; Copyright 2023 Todos os direitos reservados por <a
+									href="https://github.com/AndersonShermann" class="text-decoration-none"
+									style="color: #272860;"><strong>Anderson Shermann</strong></a></p>
+						</div>
+
+						<div class="col-md-5 col-lg-4" id="social-midia">
+							<div class="text-center text-md-end">
+								<ul class="list-unstyled list-inline">
+									<li>
+										<a href="#"><i class="bi bi-facebook fs-4" style="color: #272860;"></i></a>
+										<a href="#"><i class="bi bi-instagram fs-4" style="color: #272860;"></i></a>
+										<a href="#"><i class="bi bi-linkedin fs-4" style="color: #272860;"></i></a>
+										<a href="#"><i class="bi bi-youtube fs-4" style="color: #272860;"></i></a>
+										<a href="#"><i class="bi bi-whatsapp fs-4" style="color: #272860;"></i></a>
+									</li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+
+
+	<!-- Modal de Login -->
+
+	<div class="modal" id="loginModal">
+		<div class="modal-dialog">
+			<div class="modal-content p-5">
+
+                <div class="d-flex justify-content-center">
+                        <img src="https://github.com/AndersonShermann/goodtrip/blob/main/img/user-login.png?raw=true" style="width: 200px; height: 200px;" alt="login-icon">
+                </div>
+
+					<div class="text-center fs-2 fw-semibold">Login</div>
+
+					<form action="#" method="post">
+						<div class="input-group mt-4">
+							<label for="usuario" class="input-group-text">
+								<i class="bi bi-person-circle"></i>
+							</label>
+							<input class="form-control bg-light" type="text" id="usuario" name="usuario"
+								placeholder="Usuário">
+						</div>
+
+						<div class="input-group mt-4">
+							<label id="senha" class="input-group-text">
+								<i class="bi bi-key-fill"></i>
+							</label>
+							<input class="form-control bg-light" type="password" id="senha" name="senha"
+								placeholder="************">
+						</div>
+
+						<button type="submit" class="btn text-white w-100 mt-4 fw-semibold shadow-sm" id="searchButton">
+							Login
+						</button>
+					</form>
+
+					<div class="d-flex gap-1 justify-content-center mt-1">
+						<div>Não é cadastrado?</div>
+						<a href="/cadastro" class="text-decoration-none fw-semibold" style="color: #89CDBE;">Criar conta</a>
+					</div>
+
+					<div class="p-3">
+						<div class="border-bottom text-center" style="height: 0.9rem">
+							<span class="bg-white px-3">ou</span>
+						</div>
+					</div>
+
+					<div class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm">
+						<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20"
+							viewBox="0 0 48 48">
+							<path fill="#FFC107"
+								d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z">
+							</path>
+							<path fill="#FF3D00"
+								d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z">
+							</path>
+							<path fill="#4CAF50"
+								d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z">
+							</path>
+							<path fill="#1976D2"
+								d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z">
+							</path>
+						</svg>
+						<div class="fw-semibold text-secondary">Logar com Google</div>
+					</div>
+					<div class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm">
+						<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20"
+							viewBox="0 0 48 48">
+							<linearGradient id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1" x1="9.993" x2="40.615"
+								y1="9.993" y2="40.615" gradientUnits="userSpaceOnUse">
+								<stop offset="0" stop-color="#2aa4f4"></stop>
+								<stop offset="1" stop-color="#007ad9"></stop>
+							</linearGradient>
+							<path fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)"
+								d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z"></path>
+							<path fill="#fff"
+								d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z">
+							</path>
+						</svg>
+						<div class="fw-semibold text-secondary">Logar com Facebook</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+
+
+</body>
+
+</html>
